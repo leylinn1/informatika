@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <iostream>
 #include <cmath>
 #define M_PI 3.14159265358979323846
@@ -20,6 +21,6 @@ int main() {
     double C = max(R, S);
 
     cout << "C = " << C << endl;
-
+    system("pause");
     return 0;
 }
