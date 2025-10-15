@@ -1,26 +1,49 @@
-#include <cstdlib>
-#include <iostream>
-#include <cmath>
-#define M_PI 3.14159265358979323846
-using namespace std;
+ï»¿#include <SFML/Graphics.hpp>
+
 
 int main() {
-    setlocale(LC_ALL, "Russian");
+    sf::RenderWindow window(sf::VideoMode(500, 500), "Program");
 
-    float x, y;
-    cout << "Ââåäèòå x è y: ";
-    cin >> x >> y;
+    const int cellSize = 50;
+    const int n = 10;
 
-    double R = sqrt(x * x + y * y) / pow(2, log2(x));
+    sf::RectangleShape cells[n][n];
 
-    double S = x * tan(M_PI / 2);
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            cells[i][j].setSize(sf::Vector2f(cellSize - 2, cellSize - 2));
+            cells[i][j].setPosition(j * cellSize, i * cellSize);
+            cells[i][j].setFillColor(sf::Color::White);
+            cells[i][j].setOutlineColor(sf::Color::Black);
+            cells[i][j].setOutlineThickness(1);
+        }
+    }
 
-    cout << "R = " << R << endl;
-    cout << "S = " << S << endl;
+    // Ð²Ð°Ñ€Ð¸Ð°Ð½Ñ‚ 25
+    for (int i = 0; i < n; ++i) {
+        if (i % 2 == 0) { 
+            int length = n - i; 
+            for (int j = 0; j < length; ++j) {
+                cells[i][j].setFillColor(sf::Color::Green);
+            }
+        }
+    }
 
-    double C = max(R, S);
+    while (window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
 
-    cout << "C = " << C << endl;
-    system("pause");
+        window.clear(sf::Color::White);
+
+        for (int i = 0; i < n; ++i)
+            for (int j = 0; j < n; ++j)
+                window.draw(cells[i][j]);
+
+        window.display();
+    }
+
     return 0;
 }
