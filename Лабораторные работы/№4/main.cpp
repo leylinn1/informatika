@@ -1,49 +1,94 @@
-﻿#include <SFML/Graphics.hpp>
+﻿#include <iostream>
+#include <vector>
+#include <set>
+#include <algorithm>
+#include <iterator>
 
+// Задание 1
+void calculateSum(const int* arr, int size, int& sum) {
+    sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum += arr[i];
+    }
+}
+
+void filterArray(const int* arr, int size, std::vector<int>& result) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i] % 3 == 0) {
+            result.push_back(arr[i]);
+        }
+    }
+}
+
+void symmetricDifference(const std::set<int>& setA, const std::set<int>& setB, std::set<int>& result) {
+    for (int elem : setA) {
+        if (setB.find(elem) == setB.end()) {
+            result.insert(elem);
+        }
+    }
+    for (int elem : setB) {
+        if (setA.find(elem) == setA.end()) {
+            result.insert(elem);
+        }
+    }
+}
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(500, 500), "Program");
+    const int sizeA = 10;
+    int A[sizeA];
+    std::vector<int> B;
 
-    const int cellSize = 50;
-    const int n = 10;
-
-    sf::RectangleShape cells[n][n];
-
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
-            cells[i][j].setSize(sf::Vector2f(cellSize - 2, cellSize - 2));
-            cells[i][j].setPosition(j * cellSize, i * cellSize);
-            cells[i][j].setFillColor(sf::Color::White);
-            cells[i][j].setOutlineColor(sf::Color::Black);
-            cells[i][j].setOutlineThickness(1);
-        }
+    std::cout << "Type 10 elements of array A:" << std::endl;
+    for (int i = 0; i < sizeA; i++) {
+        std::cin >> A[i];
     }
 
-    // вариант 25
-    for (int i = 0; i < n; ++i) {
-        if (i % 2 == 0) { 
-            int length = n - i; 
-            for (int j = 0; j < length; ++j) {
-                cells[i][j].setFillColor(sf::Color::Green);
-            }
-        }
+    filterArray(A, sizeA, B);
+
+    int sumA = 0, sumB = 0;
+    calculateSum(A, sizeA, sumA);
+    calculateSum(B.data(), B.size(), sumB);
+
+    std::cout << "Array B (elements of A that are divisible by 3): ";
+    for (int elem : B) {
+        std::cout << elem << " ";
     }
+    std::cout << std::endl;
 
-    while (window.isOpen()) {
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
-                window.close();
+    std::cout << "Sum of Array A elements: " << sumA << std::endl;
+    std::cout << "Sum of Array B elements: " << sumB << std::endl;
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+
+    // Задание 2
+    int main() {
+        std::set<int> A_set, B_set, symDiff;
+        int nA, nB, elem;
+
+        std::cout << "Type the number of elements of the set A: ";
+        std::cin >> nA;
+        std::cout << "Type the elements of the set A:" << std::endl;
+        for (int i = 0; i < nA; i++) {
+            std::cin >> elem;
+            A_set.insert(elem);
         }
 
-        window.clear(sf::Color::White);
+        std::cout << "Type the number of elements of the set B: ";
+        std::cin >> nB;
+        std::cout << "Type the elements of the set B:" << std::endl;
+        for (int i = 0; i < nB; i++) {
+            std::cin >> elem;
+            B_set.insert(elem);
+        }
 
-        for (int i = 0; i < n; ++i)
-            for (int j = 0; j < n; ++j)
-                window.draw(cells[i][j]);
+        symmetricDifference(A_set, B_set, symDiff);
 
-        window.display();
+        std::cout << "\nThe symmetric difference contains " << symDiff.size() << " elements." << std::endl;
+        std::cout << "Elements of symmetric difference: ";
+        for (int x : symDiff) {
+            std::cout << x << " ";
+        }
+        std::cout << std::endl;
+
+        return 0;
     }
-
-    return 0;
-}
