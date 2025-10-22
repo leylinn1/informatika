@@ -1,3 +1,4 @@
+# Задание 1
 def calculate_sum(arr):
     total = 0
     for x in arr:
@@ -12,18 +13,12 @@ def filter_array(arr):
             result.append(x)
     return result
 
-def symmetric_difference(setA, setB):
-    result = set()
-    for elem in setA:
-        if elem not in setB:
-            result.add(elem)
-    for elem in setB:
-        if elem not in setA:
-            result.add(elem)
-    return result
+# Задание 2
+
 
 
 def main():
+    # Задане 1
     print("Введите 10 элементов массива A:")
     A = [int(input()) for _ in range(10)]
 
@@ -36,6 +31,8 @@ def main():
     print("Сумма элементов массива A:", sumA)
     print("Сумма элементов массива B:", sumB)
     
+    # Задание 2
+
     nA = int(input("Введите количество элементов множества A: "))
     print("Введите элементы множества A:")
     A_set = {int(input()) for _ in range(nA)}
@@ -44,7 +41,7 @@ def main():
     print("Введите элементы множества B:")
     B_set = {int(input()) for _ in range(nB)}
 
-    symDiff = symmetric_difference(A_set, B_set)
+    symDiff = A_set ^ B_set
 
     print(f"Симметрическая разность содержит {len(symDiff)} элементов.")
     print("Элементы симметрической разности:", *symDiff)
