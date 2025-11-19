@@ -1,0 +1,12 @@
+﻿  GameScene.cpp
+C:\Users\admin\source\repos\Project7\Project7\GameScene.cpp(111,97): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\admin\source\repos\Project7\Project7\GameScene.cpp(111,97): warning C4244:         with
+C:\Users\admin\source\repos\Project7\Project7\GameScene.cpp(111,97): warning C4244:         [
+C:\Users\admin\source\repos\Project7\Project7\GameScene.cpp(111,97): warning C4244:             T=float
+C:\Users\admin\source\repos\Project7\Project7\GameScene.cpp(111,97): warning C4244:         ]
+C:\Users\admin\source\repos\Project7\Project7\GameScene.cpp(111,79): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\admin\source\repos\Project7\Project7\GameScene.cpp(111,79): warning C4244:         with
+C:\Users\admin\source\repos\Project7\Project7\GameScene.cpp(111,79): warning C4244:         [
+C:\Users\admin\source\repos\Project7\Project7\GameScene.cpp(111,79): warning C4244:             T=float
+C:\Users\admin\source\repos\Project7\Project7\GameScene.cpp(111,79): warning C4244:         ]
+  Project7.vcxproj -> C:\Users\admin\source\repos\Project7\x64\Debug\Project7.exe
